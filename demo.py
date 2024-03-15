@@ -687,7 +687,7 @@ def run(model_tag, samples_dir, with_model: bool = True):
                                  samples_root)
     renderer_pop = RenderPop(opt, min_viewport, max_viewport, render_window, interactor, ui_utils.bg_stage_color,
                              list(ui_utils.bg_source_color) + [200], renderer_main.update_gmm)
-    render_window.Render()
+    render_window.Render()  ### currently crashing here! ###
     interactor.Initialize()
     style = InteractorStyle(opt, mesh_scroller, renderer_pop, renderer_main, interactor)
     interactor.SetInteractorStyle(style)

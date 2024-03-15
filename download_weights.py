@@ -76,17 +76,19 @@ def download_pretrained_models():
                            'save_path': './assets/checkpoints',
                            'model_name': 'spaghetti_airplanes'}
 
-    info = spaghetti_airplanes
-    print(f'Downloading {info["model_name"]}')
-    zip_file_path = f'{info["save_path"]}/{info["zip_file_name"]}'
-    with requests.Session() as session:
-        download_file(session, info)
+    info = spaghetti_chairs_large
+    if not os.path.isfile(f'{info["save_path"]}/{info["zip_file_name"]}'):
+        print(f'Downloading {info["model_name"]}')
+        zip_file_path = f'{info["save_path"]}/{info["zip_file_name"]}'
+        with requests.Session() as session:
+            download_file(session, info)
     with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
         zip_ref.extractall(info["save_path"])
-    files_utils.delete_single(zip_file_path)
+    # files_utils.delete_single(zip_file_path)
     print('Done!')
 
 
 
 if __name__ == "__main__":
+    print("WARNING!: this code does not properly download the files... Resort to do it manually.")
     download_pretrained_models()
